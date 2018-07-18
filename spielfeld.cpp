@@ -74,11 +74,11 @@ void spielfeld::keyPressEvent(QKeyEvent *event){
 
     if(event->key() == Qt::Key_Left){
         //keyPressed = Qt::Key_Left;
-        x-=20;
+        if(x>=-30) x-=20;                       //Avatar cannot leave the Spielfeld
     }
     else if (event->key() == Qt::Key_Right){
         //keyPressed = Qt::Key_Right;
-        x+=20;
+        if(x<=470) x+=20;                       //  ""
     }
     update();
 }
@@ -128,4 +128,3 @@ void spielfeld::deserialize(QFile &file){
 
     update();
 }
-
