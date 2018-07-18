@@ -9,9 +9,15 @@
 
 meinWidget::meinWidget(QWidget *parent):QWidget(parent){
 
-    QPushButton *start = new QPushButton(tr("Start/Stop"));
-    start->setFont(QFont("Arial", 18, QFont::Bold));
-    connect(start, SIGNAL(clicked()), this, SLOT(start()));
+    /*
+    QPushButton *starter = new QPushButton(tr(buttonName));
+    starter->setFont(QFont("Avenir", 18, QFont::Bold));
+    connect(starter, SIGNAL(clicked()), this, SLOT(start()));
+    */
+
+    //starter->setText();
+    starter->setFont(QFont("Avenir", 18, QFont::Bold));
+    connect(starter, SIGNAL(clicked()), this, SLOT(start()));
 
     /*
     QPushButton *stop = new QPushButton(tr("Pause"));
@@ -32,11 +38,11 @@ meinWidget::meinWidget(QWidget *parent):QWidget(parent){
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
 
     meinSpielfeld = new spielfeld;
-    meinSpielfeld->setFocusPolicy(Qt::StrongFocus); // Needs to be set, that keyPressEvent() can be caught
+    meinSpielfeld->setFocusPolicy(Qt::StrongFocus);     // Needs to be set, that keyPressEvent() can be caught
 
     QGridLayout *gridLayout = new QGridLayout;
 
-    gridLayout->addWidget(start, 0,0);
+    gridLayout->addWidget(starter, 0,0);
 
     gridLayout->addWidget(laden, 2,0);
     gridLayout->addWidget(sichern, 3,0);
@@ -48,14 +54,14 @@ meinWidget::meinWidget(QWidget *parent):QWidget(parent){
 
 void meinWidget::start(){
 
-    if(count % 2) meinSpielfeld->start();       // If count represents an odd number start() will be called
-    else meinSpielfeld->stop();
-    count++;
-}
-
-void meinWidget::stop(void){
-
-    meinSpielfeld->stop();
+    if(count % 2){
+        meinSpielfeld->start();                         // If count represents an odd number, start() will be called
+        starter->setText("Pause");
+    }
+    else{
+        meinSpielfeld->stop();
+        starter->setText("Start");
+    }
     count++;
 }
 
