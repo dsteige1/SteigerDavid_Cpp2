@@ -7,9 +7,6 @@ class meinWidget : public QWidget{
 public:
     meinWidget(QWidget *parent = 0);
 
-    enum state { running, paused };
-    state status=paused;;
-
     QPushButton *starter=new QPushButton(tr("Start"));      //Button is initiated here, so that I can change the name via the Slots
 
 private:
