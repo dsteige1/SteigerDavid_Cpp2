@@ -9,21 +9,8 @@
 
 meinWidget::meinWidget(QWidget *parent):QWidget(parent){
 
-    /*
-    QPushButton *starter = new QPushButton(tr(buttonName));
     starter->setFont(QFont("Avenir", 18, QFont::Bold));
     connect(starter, SIGNAL(clicked()), this, SLOT(start()));
-    */
-
-    //starter->setText();
-    starter->setFont(QFont("Avenir", 18, QFont::Bold));
-    connect(starter, SIGNAL(clicked()), this, SLOT(start()));
-
-    /*
-    QPushButton *stop = new QPushButton(tr("Pause"));
-    stop->setFont(QFont("Arial", 18, QFont::Bold));
-    connect(stop, SIGNAL(clicked()), this, SLOT(stop()));
-    */
 
     QPushButton *laden = new QPushButton(tr("Laden"));
     laden->setFont(QFont("Arial", 18, QFont::Bold));
@@ -43,9 +30,9 @@ meinWidget::meinWidget(QWidget *parent):QWidget(parent){
     QGridLayout *gridLayout = new QGridLayout;
 
     gridLayout->addWidget(starter, 0,0);
-
     gridLayout->addWidget(laden, 2,0);
     gridLayout->addWidget(sichern, 3,0);
+    //gridLayout->addWidget(newObj, 4,0);
     gridLayout->addWidget(quit, 5,0);
     gridLayout->addWidget(meinSpielfeld, 0, 1, 6, 1);
     gridLayout->setColumnStretch(1, 10);
@@ -55,7 +42,7 @@ meinWidget::meinWidget(QWidget *parent):QWidget(parent){
 void meinWidget::start(){
 
     if(count % 2){
-        meinSpielfeld->start();                         // If count represents an odd number, start() will be called
+        meinSpielfeld->start();                         // If 'count' represents an odd number, 'start()' will be called
         starter->setText("Pause");
     }
     else{
@@ -65,7 +52,7 @@ void meinWidget::start(){
     count++;
 }
 
-void meinWidget::load(void){
+void meinWidget::load(){
 
     QFileDialog dialog(this);
     QString fileName;
@@ -89,7 +76,7 @@ void meinWidget::load(void){
     }
 }
 
-void meinWidget::save(void){
+void meinWidget::save(){
 
     QFileDialog dialog(this);
     QString fileName;
